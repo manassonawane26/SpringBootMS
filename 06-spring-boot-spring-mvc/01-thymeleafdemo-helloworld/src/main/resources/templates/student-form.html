@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration Form</title>
+</head>
+<body>
+<h3>Student Registration Form</h3>
+<form th:action="@{/processStudentForm}" th:object="${student}" method="post"> <!-- $Student is the model name-->
+    First Name: <input type="text" th:field="*{firstName}"> <!-- shortcut for ${student.firstName}-->
+    <br><br>
+    Last Name: <input type="text" th:field="*{lastName}">
+    <br><br>
+    Country: <select th:field="*{country}">
+        <option th:each="tempCountry : ${countries}" th:value="${tempCountry}" th:text="${tempCountry}" />
+<!--        <option th:value="Brazil">Brazil</option>-->
+<!--        <option th:value="France">France</option>-->
+<!--        <option th:value="Germany">Germany</option>-->
+<!--        <option th:value="India">India</option>-->
+    </select>
+    <br><br>
+    Favourite programming language:
+<!--    <input type="radio" th:field="*{favouriteLanguage}" th:value="Go"> Go </input>-->
+<!--    <input type="radio" th:field="*{favouriteLanguage}" th:value="Java"> Java </input>-->
+<!--    <input type="radio" th:field="*{favouriteLanguage}" th:value="Python"> Python </input>-->
+        <input type="radio" th:field="*{favouriteLanguage}"
+               th:each = "tempLang : ${languages}"
+               th:value="${tempLang}"
+               th:text="${tempLang}"/>
+
+    <br><br>
+    Favourite OS:
+<!--    <input type="checkbox" th:field="*{favouriteOS}" th:value="Linux"> Linux </input>-->
+<!--    <input type="checkbox" th:field="*{favouriteOS}" th:value="'Microsoft Windows'"> Microsoft Windows </input>-->
+<!--    <input type="checkbox" th:field="*{favouriteOS}" th:value="Mac"> Mac </input>-->
+    <input type="checkbox" th:field="*{favouriteOS}"
+            th:each = "tempOS : ${systems}"
+            th:value="${tempOS}"
+            th:text="${tempOS}">
+    <br><br>
+    <input type="submit" value="Submit">
+
+    <!-- when the form is loaded Spring MVC will read student form the model, then call student.getFirstName() and student.getLastName()-->
+    <!-- when the form is submitted Spring MVC will create a new student instance and add to the model, then call student.setFirstName() and student.setLastName()-->
+</form>
+</body>
+</html>

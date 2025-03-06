@@ -1,0 +1,19 @@
+<!Doctype html>
+<html xmlns:th="http//www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Demo</title>
+    <!-- reference css file -->
+    <link rel="stylesheet" th:href="@{/css/demo.css}"/>
+</head>
+<body>
+<h1> Hello World of Spring!!! </h1> <br/>
+
+<!-- param.parameter name actually reads a parameter from html form -->
+Student Name = <span th:text="${param.studentName}" />
+<br><br>
+
+<!-- since message is an attribute in model, we can access directly-->
+Capital info = <span th:text="${message}" />
+
+</body>
+</html>
